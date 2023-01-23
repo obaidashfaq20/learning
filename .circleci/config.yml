@@ -1,0 +1,27 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/learning
+    docker:
+      - image: circleci/ruby:2.7.1-node-browsers
+      - environment:
+          RAILS_ENV: test
+    steps:
+      - checkout
+      - restore_cache:
+          key: bundler-{{ checksum "Gemfile.lock" }}
+      - run: gem install bundler
+      - run: bundle install
+      - run:
+          name: Install dependencies
+          command: |
+            bundle install
+      - save_cache:
+          key: bundler-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ~/.bundle
+      - run:
+          name: Run tests
+          command: |
+            bundle exec RAILS_ENV=test
+            bundle exec rspec

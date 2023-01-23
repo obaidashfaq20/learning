@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/learning
     docker:
-      - image: circleci/ruby:3.0.0
+      - image: cimg/ruby:3.1.2-browsers
       - environment:
           RAILS_ENV: test
     steps:

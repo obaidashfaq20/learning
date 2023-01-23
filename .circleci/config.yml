@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/learning
     docker:
-      - image: cimg/ruby:3.0.0
+      - image: circleci/ruby:2.7.1-node-browsers
       - environment:
           RAILS_ENV: test
     steps:
@@ -20,3 +20,8 @@ jobs:
           key: bundler-{{ checksum "Gemfile.lock" }}
           paths:
             - ~/.bundle
+      - run:
+          name: Run tests
+          command: |
+            bundle exec RAILS_ENV=test
+            bundle exec rspec

@@ -5,7 +5,7 @@ ruby "3.0.0"
 
 gem "rails"
 gem "sprockets-rails"
-gem "sqlite3", "~> 1.6"
+gem "sqlite3", "~> 1.7"
 gem "puma", "~> 6.4"
 gem "importmap-rails"
 gem "turbo-rails"
